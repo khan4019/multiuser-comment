@@ -1,0 +1,21 @@
+<div class="comments" *ngIf="postComment!==undefined">
+    <h6 *ngIf="postComment?.length<1">No Comments found</h6>
+    <ul *ngIf="postComment?.length>0">
+        <li *ngFor="let post of postComment">
+            <div class="col-12 col-sm-12 comment-container">
+                    <p [ngClass]="{'spam-comment':post.markedSpam}">{{post.comment}}</p>
+                    <div class="actions">
+                        <span>{{post.timestamp | date: 'MMM d, y, h:mm:ss a'}}</span>
+                        <span class="divider"></span>
+                        <button class="btn btn-sm btn-warning" title="Mark as Spam" (click)="markAsSpam(post.key, post.markedSpam)">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </button>
+                        <span class="divider"></span>
+                        <button class="btn btn-sm btn-danger" title="Delete this Comment" (click)="deleteComment(post.key)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                </div>                
+            </div>
+        </li>
+    </ul>
+</div>
